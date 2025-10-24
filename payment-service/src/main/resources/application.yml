@@ -1,4 +1,3 @@
-
 server:
   servlet:
     context-path: /payment-service
@@ -35,12 +34,3 @@ management:
   endpoint:
     health:
       show-details: always
-
-
-
-
-
-
-
-
-
