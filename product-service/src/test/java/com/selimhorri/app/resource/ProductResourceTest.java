@@ -130,8 +130,8 @@ class ProductResourceTest {
                     .andExpect(jsonPath("$.collection").isArray())
                     .andExpect(jsonPath("$.collection[0].productTitle").value("Smartphone"))
                     .andExpect(jsonPath("$.collection[1].productTitle").value("T-Shirt"))
-                    .andExpect(jsonPath("$.collection[0].categoryDto.categoryTitle").value("Electronics"))
-                    .andExpect(jsonPath("$.collection[1].categoryDto.categoryTitle").value("Clothing"));
+                    .andExpect(jsonPath("$.collection[0].category.categoryTitle").value("Electronics"))
+                    .andExpect(jsonPath("$.collection[1].category.categoryTitle").value("Clothing"));
 
             verify(productService).findAll();
         }

@@ -84,6 +84,7 @@ class PaymentServiceTest {
             // Given
             List<Payment> payments = Arrays.asList(testPayment);
             when(paymentRepository.findAll()).thenReturn(payments);
+            lenient().when(restTemplate.getForObject(anyString(), eq(OrderDto.class))).thenReturn(testOrderDto);
 
             // When
             List<PaymentDto> result = paymentService.findAll();
@@ -157,6 +158,7 @@ class PaymentServiceTest {
             // Given
             Integer paymentId = 1;
             when(paymentRepository.findById(paymentId)).thenReturn(Optional.of(testPayment));
+            lenient().when(restTemplate.getForObject(anyString(), eq(OrderDto.class))).thenReturn(testOrderDto);
 
             // When
             PaymentDto result = paymentService.findById(paymentId);
@@ -234,6 +236,7 @@ class PaymentServiceTest {
                     .build();
 
             when(paymentRepository.save(any(Payment.class))).thenReturn(savedPayment);
+            lenient().when(restTemplate.getForObject(anyString(), eq(OrderDto.class))).thenReturn(newOrderDto);
 
             // When
             PaymentDto result = paymentService.save(newPaymentDto);
@@ -479,6 +482,7 @@ class PaymentServiceTest {
                     .build();
 
             when(paymentRepository.save(any(Payment.class))).thenReturn(savedPayment);
+            lenient().when(restTemplate.getForObject(anyString(), eq(OrderDto.class))).thenReturn(expensiveOrder);
 
             // When
             PaymentDto result = paymentService.save(expensivePayment);

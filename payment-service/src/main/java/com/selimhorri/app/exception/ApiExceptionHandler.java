@@ -41,8 +41,8 @@ public class ApiExceptionHandler {
 	}
 	
 	@ExceptionHandler(value = {
-		IllegalStateException.class,
 		PaymentNotFoundException.class,
+		IllegalStateException.class,
 	})
 	public <T extends RuntimeException> ResponseEntity<ExceptionMsg> handleApiRequestException(final T e) {
 		
@@ -56,6 +56,23 @@ public class ApiExceptionHandler {
 					.timestamp(ZonedDateTime
 							.now(ZoneId.systemDefault()))
 					.build(), badRequest);
+	}
+	
+	@ExceptionHandler(value = {
+		RuntimeException.class,
+	})
+	public <T extends RuntimeException> ResponseEntity<ExceptionMsg> handleRuntimeException(final T e) {
+		
+		log.info("**ApiExceptionHandler controller, handle runtime exception*\n");
+		final var internalServerError = HttpStatus.INTERNAL_SERVER_ERROR;
+		
+		return new ResponseEntity<>(
+				ExceptionMsg.builder()
+					.msg("#### " + e.getMessage() + "! ####")
+					.httpStatus(internalServerError)
+					.timestamp(ZonedDateTime
+							.now(ZoneId.systemDefault()))
+					.build(), internalServerError);
 	}
 	
 	

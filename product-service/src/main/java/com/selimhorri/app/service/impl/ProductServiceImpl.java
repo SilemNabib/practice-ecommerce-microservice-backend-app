@@ -66,8 +66,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void deleteById(final Integer productId) {
 		log.info("*** Void, service; delete product by id *");
-		this.productRepository.delete(ProductMappingHelper
-				.map(this.findById(productId)));
+		this.productRepository.deleteById(productId);
 	}
 	
 	

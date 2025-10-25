@@ -59,8 +59,11 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public PaymentDto save(final PaymentDto paymentDto) {
 		log.info("*** PaymentDto, service; save payment *");
-		return PaymentMappingHelper.map(this.paymentRepository
+		PaymentDto result = PaymentMappingHelper.map(this.paymentRepository
 				.save(PaymentMappingHelper.map(paymentDto)));
+		result.setOrderDto(this.restTemplate.getForObject(AppConstant.DiscoveredDomainsApi
+				.ORDER_SERVICE_API_URL + "/" + result.getOrderDto().getOrderId(), OrderDto.class));
+		return result;
 	}
 	
 	@Override
