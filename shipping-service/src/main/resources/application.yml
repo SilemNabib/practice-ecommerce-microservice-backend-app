@@ -1,3 +1,4 @@
+
 server:
   servlet:
     context-path: /shipping-service
@@ -43,3 +44,11 @@ management:
   endpoint:
     health:
       show-details: always
+
+
+
+
+
+
+
+

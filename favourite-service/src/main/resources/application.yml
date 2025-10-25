@@ -1,3 +1,4 @@
+
 server:
   servlet:
     context-path: /favourite-service
@@ -34,3 +35,12 @@ management:
   endpoint:
     health:
       show-details: always
+
+
+
+
+
+
+
+
+
